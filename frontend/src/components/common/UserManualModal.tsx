@@ -379,6 +379,14 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
                 <p className="text-[11px] text-slate-500">
                   Control Tower view showing platform governance, user distribution, procurement pipeline health, and audit activity
                 </p>
+                <img
+                  src="/Screenshot%20(611).png"
+                  alt="InnoGov administrator startup verification dashboard"
+                  className="w-full rounded-xl border border-slate-200 shadow-sm"
+                />
+                <p className="text-[11px] text-slate-500">
+                  Startup Verification view showing verified startup dossiers, registration details, and administrative review actions
+                </p>
               </div>
 
               <div className="p-4 rounded-2xl bg-slate-100 border border-slate-300 space-y-2">
