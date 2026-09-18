@@ -65,7 +65,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
           </button>
         </div>
 
-        <div className="mx-6 mt-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs leading-relaxed">
+        <div className="mx-6 mt-4 mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs leading-relaxed">
           <strong className="block mb-1">Review access</strong>
           SIH evaluators who do not want to register can sign in with the provided review credentials:
           <span className="block mt-1"><strong>Startup</strong> | <strong>Email:</strong> <span className="font-mono">navya@gmail.com</span> | <strong>Password:</strong> <span className="font-mono">Password123</span></span>
@@ -75,7 +75,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
         </div>
 
         {/* Role Switcher Tabs */}
-        <div className="bg-slate-50 border-b border-slate-200 px-6 py-3 flex items-center gap-2 overflow-x-auto">
+        <div className="mt-1 bg-slate-50 border-y border-slate-200 px-6 py-3 flex items-center gap-2 overflow-x-auto">
           <button
             onClick={() => setActiveRole('STARTUP')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
@@ -126,7 +126,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
         </div>
 
         {/* Content Area */}
-        <div className="p-6 overflow-y-auto space-y-6 text-slate-700 text-xs leading-relaxed">
+        <div className="min-h-0 flex-1 p-6 overflow-y-auto space-y-6 text-slate-700 text-xs leading-relaxed">
           {/* STARTUP GUIDE */}
           {activeRole === 'STARTUP' && (
             <div className="space-y-6">
@@ -374,7 +374,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
                 <img
                   src="/Screenshot%202026-09-18%20191319.png"
                   alt="InnoGov administrator control tower dashboard"
-                  className="w-full rounded-xl border border-slate-200 shadow-sm"
+                  className="block w-full max-h-[420px] object-contain object-top rounded-xl border border-slate-200 shadow-sm bg-white"
                 />
                 <p className="text-[11px] text-slate-500">
                   Control Tower view showing platform governance, user distribution, procurement pipeline health, and audit activity
@@ -382,7 +382,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
                 <img
                   src="/Screenshot%20(611).png"
                   alt="InnoGov administrator startup verification dashboard"
-                  className="w-full rounded-xl border border-slate-200 shadow-sm"
+                  className="block w-full max-h-[420px] object-contain object-top rounded-xl border border-slate-200 shadow-sm bg-white"
                 />
                 <p className="text-[11px] text-slate-500">
                   Startup Verification view showing verified startup dossiers, registration details, and administrative review actions
