@@ -17,7 +17,6 @@ import {
   Users,
   BookOpen,
 } from 'lucide-react';
-import { DEMO_ACCOUNTS } from '../../mock/demoAccounts';
 import { useAuth } from '../../context/AuthContext';
 import UserManualModal from '../../components/common/UserManualModal';
 
@@ -80,6 +79,13 @@ export const LandingPage: React.FC = () => {
       color: 'from-blue-700 to-navy-900',
     },
   ];
+
+  const roleCards = [
+    { key: 'STARTUP', label: 'Startup Innovator', badge: 'DPIIT Registered', description: 'Discover challenges, submit proposals, and deliver measurable pilots.' },
+    { key: 'GOVERNMENT', label: 'Government Department', badge: 'Verified Official', description: 'Publish challenges, match startups, run pilots, and award contracts.' },
+    { key: 'EVALUATOR', label: 'Technical Evaluator', badge: 'Accredited Panelist', description: 'Review evidence, score pilot outcomes, and submit recommendations.' },
+    { key: 'ADMIN', label: 'System Administrator', badge: 'Restricted Access', description: 'Monitor platform governance, users, security, and audit activity.' },
+  ] as const;
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-sans">
@@ -201,28 +207,27 @@ export const LandingPage: React.FC = () => {
               Select a role to continue
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-5xl mx-auto text-left">
-              {(['STARTUP', 'GOVERNMENT', 'EVALUATOR', 'ADMIN'] as const).map((r) => {
-                const acc = DEMO_ACCOUNTS[r];
+              {roleCards.map((card) => {
                 return (
                   <button
-                    key={r}
-                    onClick={() => handleQuickLogin(r)}
+                    key={card.key}
+                    onClick={() => handleQuickLogin(card.key)}
                     className="p-4 rounded-xl bg-white border border-slate-200 hover:border-gov-blue hover:shadow-card-hover transition-all text-left group"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-2xl">{acc.label.split(' ')[0]}</span>
+                      <span className="text-2xl">{card.key === 'STARTUP' ? '🚀' : card.key === 'GOVERNMENT' ? '🏛' : card.key === 'EVALUATOR' ? '✓' : '⚙'}</span>
                       <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-gov-blue">
-                        {acc.badge}
+                        {card.badge}
                       </span>
                     </div>
                     <h4 className="text-xs font-bold text-slate-900 leading-snug group-hover:text-gov-blue">
-                      {acc.label.replace(/^[^\s]+\s+/, '')}
+                      {card.label}
                     </h4>
                     <p className="text-[11px] text-slate-500 mt-1 line-clamp-2 leading-normal">
-                      {acc.description}
+                      {card.description}
                     </p>
                     <div className="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-gov-blue font-semibold">
-                      <span>Launch as {r}</span>
+                      <span>Launch as {card.key}</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </button>

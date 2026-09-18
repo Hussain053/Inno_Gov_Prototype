@@ -22,7 +22,17 @@ async def seed():
         # Check if users exist
         from sqlalchemy import select
         res = await session.execute(select(User))
-        if res.scalars().first():
+        existing_users = res.scalars().all()
+        existing_evaluator = next(
+            (user for user in existing_users if user.email.lower() == "neel@gmail.com"),
+            None,
+        )
+        if existing_evaluator:
+            existing_evaluator.password_hash = hash_password("Password123")
+            await session.commit()
+            print("Updated evaluator demo password for neel@gmail.com.")
+
+        if existing_users:
             print("Database already seeded with users. Skipping.")
             return
 
@@ -58,7 +68,7 @@ async def seed():
         evaluator = User(
             name="Dr. Anita Verma",
             email="neel@gmail.com",
-            password_hash=pwd_hash,
+            password_hash=hash_password("Password123"),
             role=UserRole.EVALUATOR,
             organization="National Clean Energy Council",
             is_active=True,

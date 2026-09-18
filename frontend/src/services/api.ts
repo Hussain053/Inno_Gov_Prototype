@@ -1,5 +1,4 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { DEMO_ACCOUNTS } from '../mock/demoAccounts';
 
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
@@ -27,39 +26,6 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   async (error: AxiosError<{ detail?: string }>) => {
-    const token = localStorage.getItem('innogov_token');
-    const config = error.config as (InternalAxiosRequestConfig & { _retryDemoUpgrade?: boolean }) | undefined;
-
-    if (error.response?.status === 401 && !config?._retryDemoUpgrade) {
-      try {
-        const saved = localStorage.getItem('innogov_user');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          const demoPersona = Object.values(DEMO_ACCOUNTS).find(
-            (acc) => acc.email.toLowerCase() === parsed.email?.toLowerCase()
-          );
-
-          if (demoPersona) {
-            const response = await axios.post(`${API_BASE_URL}/auth/login`, {
-              email: demoPersona.email,
-              password: demoPersona.password,
-            });
-
-            const nextToken = response.data.access_token;
-            localStorage.setItem('innogov_token', nextToken);
-            if (config) {
-              config._retryDemoUpgrade = true;
-              config.headers = config.headers || {};
-              config.headers.Authorization = `Bearer ${nextToken}`;
-            }
-            return apiClient.request(config!);
-          }
-        }
-      } catch {
-        // Fall through to the existing login redirect below.
-      }
-    }
-
     if (error.response?.status === 401) {
       // Clear auth tokens
       localStorage.removeItem('innogov_token');

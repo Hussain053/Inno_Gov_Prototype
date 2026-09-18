@@ -17,7 +17,6 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
-import { DEMO_ACCOUNTS } from '../../mock/demoAccounts';
 import { UserRole } from '../../types';
 import authService from '../../services/authService';
 
@@ -266,7 +265,7 @@ export const LoginPage: React.FC = () => {
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-[11px] leading-relaxed text-slate-600">
                 {selectedRole === 'STARTUP' && <><span className="block">SIH evaluators who do not want to register can review the platform using:</span><span className="block"><strong className="text-slate-800">Email:</strong> <span className="font-mono text-slate-800">navya@gmail.com</span></span><span className="block"><strong className="text-slate-800">Password:</strong> <span className="font-mono text-slate-800">Password123</span></span></>}
-                {selectedRole === 'EVALUATOR' && <><span className="block">SIH evaluators who do not want to register can review the platform using:</span><span className="block"><strong className="text-slate-800">Email:</strong> <span className="font-mono text-slate-800">neel@gmail.com</span></span><span className="block"><strong className="text-slate-800">Password:</strong> <span className="font-mono text-slate-800">Password123!</span></span></>}
+                {selectedRole === 'EVALUATOR' && <><span className="block">SIH evaluators who do not want to register can review the platform using:</span><span className="block"><strong className="text-slate-800">Email:</strong> <span className="font-mono text-slate-800">neel@gmail.com</span></span><span className="block"><strong className="text-slate-800">Password:</strong> <span className="font-mono text-slate-800">Password123</span></span></>}
                 {selectedRole === 'GOVERNMENT' && <><span className="block">SIH evaluators who do not want to register can review the platform using:</span><span className="block"><strong className="text-slate-800">Email:</strong> <span className="font-mono text-slate-800">dd@gmail.com</span></span><span className="block"><strong className="text-slate-800">Password:</strong> <span className="font-mono text-slate-800">Password123!</span></span></>}
                 {selectedRole === 'ADMIN' && <><strong className="text-slate-800">Administrator access:</strong> Credentials are restricted for security and are not displayed here</>}
               </div>
