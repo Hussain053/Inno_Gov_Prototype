@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
+import { DEMO_ACCOUNTS } from '../../mock/demoAccounts';
 import { UserRole } from '../../types';
 import authService from '../../services/authService';
 
@@ -261,30 +262,14 @@ export const LoginPage: React.FC = () => {
           {activeTab === 'login' ? (
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-[11px] leading-relaxed text-slate-600">
-                {selectedRole === 'STARTUP' && (
-                  <>
-                    <strong className="text-slate-800">Startup access:</strong> Use the provided account if you do not want to register: <span className="font-mono text-slate-800">navya@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span>.
-                  </>
-                )}
-                {selectedRole === 'EVALUATOR' && (
-                  <>
-                    <strong className="text-slate-800">Evaluator access:</strong> SIH evaluators who do not want to register can review the platform using: <span className="font-mono text-slate-800">neel@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span>.
-                  </>
-                )}
-                {selectedRole === 'GOVERNMENT' && (
-                  <>
-                    <strong className="text-slate-800">Government access:</strong> Use the provided account if you do not want to register: <span className="font-mono text-slate-800">dd@gmail.com</span> / <span className="font-mono text-slate-800">Password123!</span>.
-                  </>
-                )}
-                {selectedRole === 'ADMIN' && (
-                  <>
-                    <strong className="text-slate-800">Administrator access:</strong> Credentials are restricted for security and are not displayed here.
-                  </>
-                )}
+                {selectedRole === 'STARTUP' && <><strong className="text-slate-800">Startup access:</strong> Use the provided account if you do not want to register: <span className="font-mono text-slate-800">navya@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span></>}
+                {selectedRole === 'EVALUATOR' && <><strong className="text-slate-800">Evaluator access:</strong> SIH evaluators who do not want to register can review the platform using: <span className="font-mono text-slate-800">neel@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span></>}
+                {selectedRole === 'GOVERNMENT' && <><strong className="text-slate-800">Government access:</strong> Use the provided account if you do not want to register: <span className="font-mono text-slate-800">dd@gmail.com</span> / <span className="font-mono text-slate-800">Password123!</span></>}
+                {selectedRole === 'ADMIN' && <><strong className="text-slate-800">Administrator access:</strong> Credentials are restricted for security and are not displayed here</>}
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  Email Address
+                  Email:
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
@@ -295,7 +280,7 @@ export const LoginPage: React.FC = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter email address"
+                    placeholder="Enter email"
                     className="block w-full pl-9 pr-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-gov-blue focus:border-transparent outline-none"
                   />
                 </div>
@@ -303,7 +288,7 @@ export const LoginPage: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  Password
+                  Password:
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
@@ -348,7 +333,7 @@ export const LoginPage: React.FC = () => {
           ) : (
             <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
               <div className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-[11px] leading-relaxed text-slate-600">
-                Already have access? Select <strong className="text-slate-800">Sign In to Account</strong> above. SIH evaluators can use the provided evaluator credentials instead of registering.
+                Already have access? Select <strong className="text-slate-800">Sign In to Account</strong> above. SIH evaluators can use the provided evaluator credentials instead of registering
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
@@ -366,7 +351,7 @@ export const LoginPage: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  Email Address
+                  Email:
                 </label>
                 <input
                   type="email"
@@ -380,7 +365,7 @@ export const LoginPage: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  Password (min 8 characters, at least 1 digit)
+                  Password (minimum 8 characters, at least 1 digit):
                 </label>
                 <input
                   type="password"
@@ -433,7 +418,7 @@ export const LoginPage: React.FC = () => {
                       className="block w-full px-3 py-2 text-xs border border-slate-300 rounded-lg font-mono focus:ring-2 focus:ring-gov-blue outline-none"
                     />
                     <p className="text-[10px] text-slate-400 mt-1">
-                      Accepted IDs: <code className="text-slate-600">GOV-VERIFIED-001</code>, <code className="text-slate-600">GOV-TEST-12345</code>
+                      Valid demo IDs: <code className="text-slate-600">GOV-VERIFIED-001</code>, <code className="text-slate-600">GOV-TEST-12345</code>
                     </p>
                   </div>
                 </>
@@ -453,7 +438,7 @@ export const LoginPage: React.FC = () => {
                     className="block w-full px-3 py-2 text-xs border border-slate-300 rounded-lg font-mono focus:ring-2 focus:ring-gov-blue outline-none"
                   />
                   <p className="text-[10px] text-slate-400 mt-1">
-                    Accepted IDs: <code className="text-slate-600">EVAL-VERIFIED-001</code>, <code className="text-slate-600">EVAL-INVITE-2026</code>
+                    Valid demo IDs: <code className="text-slate-600">EVAL-VERIFIED-001</code>, <code className="text-slate-600">EVAL-INVITE-2026</code>
                   </p>
                 </div>
               )}

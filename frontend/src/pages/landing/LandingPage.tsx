@@ -183,7 +183,7 @@ export const LandingPage: React.FC = () => {
               to="/login?mode=register"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-bold bg-gov-navy text-white hover:bg-slate-800 shadow-elevated transition-all"
             >
-              <span>Login to Platform</span>
+              <span>Register on Platform</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <button
