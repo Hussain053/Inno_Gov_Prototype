@@ -33,8 +33,8 @@ async def seed():
 
         startup1 = User(
             name="SolarTech Innovations",
-            email="startup_a@solartech.io",
-            password_hash=pwd_hash,
+            email="navya@gmail.com",
+            password_hash=hash_password("Password123"),
             role=UserRole.STARTUP,
             organization="SolarTech Inc",
             is_active=True,
@@ -49,7 +49,7 @@ async def seed():
         )
         gov = User(
             name="R. K. Sharma",
-            email="gov_a@energy.gov",
+            email="dd@gmail.com",
             password_hash=pwd_hash,
             role=UserRole.GOVERNMENT,
             organization="Ministry of Power & Energy",
@@ -57,7 +57,7 @@ async def seed():
         )
         evaluator = User(
             name="Dr. Anita Verma",
-            email="evaluator_a@cleanenergy.org",
+            email="neel@gmail.com",
             password_hash=pwd_hash,
             role=UserRole.EVALUATOR,
             organization="National Clean Energy Council",

@@ -1,10 +1,10 @@
 import { MilestonePayment } from '../types';
 
 /**
- * Isolated Milestone Payment Service (Prototype / Demo Layer)
+ * Isolated milestone payment service.
  * 
  * IMPORTANT: InnoGov backend currently does not include a real banking/payment gateway.
- * This service provides structured milestone tracking for demonstration purposes,
+ * This service provides structured milestone tracking,
  * designed so a real payment gateway (e.g. GeM PFMS or RazorpayX) can replace this interface seamlessly.
  */
 
@@ -16,7 +16,7 @@ const DEFAULT_MILESTONES: MilestonePayment[] = [
     status: 'PAID',
     target_date: '2026-03-15',
     deliverables: 'Initial setup, procurement of smart IoT sensor grid units, baseline survey',
-    transaction_ref: 'DEMO-TXN-INNO-849201',
+    transaction_ref: 'TXN-INNO-849201',
     is_demo: true,
   },
   {
@@ -26,7 +26,7 @@ const DEFAULT_MILESTONES: MilestonePayment[] = [
     status: 'PAID',
     target_date: '2026-05-30',
     deliverables: 'Deploying edge telemetry in Municipal Facility #4, validating communication with SCADA',
-    transaction_ref: 'DEMO-TXN-INNO-991204',
+    transaction_ref: 'TXN-INNO-991204',
     is_demo: true,
   },
   {
@@ -36,7 +36,7 @@ const DEFAULT_MILESTONES: MilestonePayment[] = [
     status: 'APPROVED',
     target_date: '2026-08-15',
     deliverables: 'Submission of 90-day reliability data, >=90% efficiency and 99.9% uptime verification',
-    transaction_ref: 'DEMO-TXN-INNO-330192',
+    transaction_ref: 'TXN-INNO-330192',
     is_demo: true,
   },
   {

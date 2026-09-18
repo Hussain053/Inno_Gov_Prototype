@@ -121,7 +121,7 @@ export const LandingPage: React.FC = () => {
             title="Platform Operating Manual"
           >
             <BookOpen className="w-3.5 h-3.5 text-emerald-700" />
-            <span>User Manual</span>
+            <span>SIH Evaluator Guide</span>
           </button>
 
           {isAuthenticated() ? (
@@ -145,7 +145,7 @@ export const LandingPage: React.FC = () => {
               to="/login"
               className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg bg-gov-navy text-white hover:bg-slate-800 shadow-sm transition-all"
             >
-              <span>Login to Platform</span>
+              <span>Register on Platform</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           )}
@@ -180,7 +180,7 @@ export const LandingPage: React.FC = () => {
           {/* Primary Action Buttons */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <Link
-              to="/login"
+              to="/login?mode=register"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-bold bg-gov-navy text-white hover:bg-slate-800 shadow-elevated transition-all"
             >
               <span>Login to Platform</span>
@@ -191,14 +191,14 @@ export const LandingPage: React.FC = () => {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-white text-slate-700 hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
             >
               <BookOpen className="w-4 h-4 text-slate-600" />
-              <span>User Manual</span>
+              <span>SIH Evaluator Guide</span>
             </button>
           </div>
 
-          {/* Demo Persona Quick-Cards */}
+          {/* Role access cards */}
           <div className="mt-14 pt-8 border-t border-slate-200/80">
             <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">
-              Select Demo Role for Evaluation
+              Select a role to continue
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-5xl mx-auto text-left">
               {(['STARTUP', 'GOVERNMENT', 'EVALUATOR', 'ADMIN'] as const).map((r) => {

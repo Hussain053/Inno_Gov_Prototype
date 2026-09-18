@@ -17,7 +17,6 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
-import { DEMO_ACCOUNTS } from '../../mock/demoAccounts';
 import { UserRole } from '../../types';
 import authService from '../../services/authService';
 
@@ -29,11 +28,13 @@ export const LoginPage: React.FC = () => {
 
   const initialRole = (searchParams.get('role') as UserRole) || 'STARTUP';
   const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole);
-  const [activeTab, setActiveTab] = useState<'login' | 'register'>('login');
+  const [activeTab, setActiveTab] = useState<'login' | 'register'>(
+    searchParams.get('mode') === 'register' ? 'register' : 'login'
+  );
 
   // Login form state
-  const [email, setEmail] = useState(DEMO_ACCOUNTS[initialRole]?.email || '');
-  const [password, setPassword] = useState(DEMO_ACCOUNTS[initialRole]?.password || '');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -54,12 +55,10 @@ export const LoginPage: React.FC = () => {
     }
   }, [isAuthenticated, role]);
 
-  // When role selection changes, pre-fill credentials for demo
   const handleRoleSelect = (r: UserRole) => {
     setSelectedRole(r);
-    const demo = DEMO_ACCOUNTS[r];
-    setEmail(demo.email);
-    setPassword(demo.password);
+    setEmail('');
+    setPassword('');
     if (r === 'GOVERNMENT') setRegServiceId('GOV-VERIFIED-001');
     if (r === 'EVALUATOR') setRegServiceId('EVAL-VERIFIED-001');
   };
@@ -172,7 +171,7 @@ export const LoginPage: React.FC = () => {
           <span className="font-extrabold text-2xl text-gov-navy tracking-tight">InnoGov</span>
         </Link>
         <h2 className="text-xl font-bold text-slate-800">Public Procurement Portal</h2>
-        <p className="text-xs text-slate-500 mt-1">Smart India Hackathon Problem 26136 Demonstration</p>
+        <p className="text-xs text-slate-500 mt-1">Smart India Hackathon Problem 26136</p>
       </div>
 
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-xl px-4">
@@ -203,18 +202,18 @@ export const LoginPage: React.FC = () => {
             })}
           </div>
 
-          {/* Active Role Demo Info Tag */}
+          {/* Active role information */}
           <div className="mt-4 p-2.5 bg-blue-50/50 rounded-xl border border-blue-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="px-1.5 py-0.5 text-[9px] font-extrabold bg-blue-600 text-white rounded">
-                DEMO PRE-FILL
+                SELECTED ROLE
               </span>
               <span className="text-xs text-slate-700 font-medium truncate">
-                {DEMO_ACCOUNTS[selectedRole].label}
+                {rolesList.find((item) => item.key === selectedRole)?.title}
               </span>
             </div>
             <span className="text-[10px] text-slate-500 font-mono">
-              {DEMO_ACCOUNTS[selectedRole].email}
+              Enter your account details below
             </span>
           </div>
         </div>
@@ -262,7 +261,7 @@ export const LoginPage: React.FC = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="official@domain.gov"
+                    placeholder="Enter email address"
                     className="block w-full pl-9 pr-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-gov-blue focus:border-transparent outline-none"
                   />
                 </div>
@@ -281,7 +280,7 @@ export const LoginPage: React.FC = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
+                    placeholder="Enter password"
                     className="block w-full pl-9 pr-9 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-gov-blue focus:border-transparent outline-none"
                   />
                   <button
@@ -311,13 +310,6 @@ export const LoginPage: React.FC = () => {
                 </button>
               </div>
 
-              {/* DEMO Quick Helper */}
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                <span>Demo Password: <code className="bg-slate-100 px-1 py-0.5 rounded font-mono text-slate-700">Password123!</code></span>
-                <span className="text-gov-blue cursor-pointer hover:underline" onClick={() => handleRoleSelect(selectedRole)}>
-                  Reset Demo Creds
-                </span>
-              </div>
             </form>
           ) : (
             <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
@@ -404,7 +396,7 @@ export const LoginPage: React.FC = () => {
                       className="block w-full px-3 py-2 text-xs border border-slate-300 rounded-lg font-mono focus:ring-2 focus:ring-gov-blue outline-none"
                     />
                     <p className="text-[10px] text-slate-400 mt-1">
-                      Valid demo IDs: <code className="text-slate-600">GOV-VERIFIED-001</code>, <code className="text-slate-600">GOV-TEST-12345</code>
+                      Accepted IDs: <code className="text-slate-600">GOV-VERIFIED-001</code>, <code className="text-slate-600">GOV-TEST-12345</code>
                     </p>
                   </div>
                 </>
@@ -424,7 +416,7 @@ export const LoginPage: React.FC = () => {
                     className="block w-full px-3 py-2 text-xs border border-slate-300 rounded-lg font-mono focus:ring-2 focus:ring-gov-blue outline-none"
                   />
                   <p className="text-[10px] text-slate-400 mt-1">
-                    Valid demo IDs: <code className="text-slate-600">EVAL-VERIFIED-001</code>, <code className="text-slate-600">EVAL-INVITE-2026</code>
+                    Accepted IDs: <code className="text-slate-600">EVAL-VERIFIED-001</code>, <code className="text-slate-600">EVAL-INVITE-2026</code>
                   </p>
                 </div>
               )}

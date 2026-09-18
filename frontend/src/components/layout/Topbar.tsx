@@ -24,9 +24,9 @@ export const Topbar: React.FC<TopbarProps> = ({ onOpenMobileNav }) => {
     setIsRoleMenuOpen(false);
     setIsSwitching(true);
     try {
-      const demoAccount = DEMO_ACCOUNTS[targetRole];
-      await login(demoAccount.email, demoAccount.password);
-      success(`Switched role to ${targetRole}`, `Now operating as ${demoAccount.roleName}`);
+      const roleAccount = DEMO_ACCOUNTS[targetRole];
+      await login(roleAccount.email, roleAccount.password);
+      success(`Switched role to ${targetRole}`, `Now operating as ${roleAccount.roleName}`);
       
       // Navigate to target role dashboard
       switch (targetRole) {
@@ -44,7 +44,7 @@ export const Topbar: React.FC<TopbarProps> = ({ onOpenMobileNav }) => {
           break;
       }
     } catch (err: any) {
-      error('Role switch failed', err.response?.data?.detail || 'Could not authenticate demo user on backend');
+      error('Role switch failed', err.response?.data?.detail || 'Could not authenticate this account');
     } finally {
       setIsSwitching(false);
     }
@@ -78,22 +78,22 @@ export const Topbar: React.FC<TopbarProps> = ({ onOpenMobileNav }) => {
           <button
             onClick={() => setIsManualOpen(true)}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 transition-colors shadow-xs"
-            title="Platform User Manual & Flow Guide"
+            title="SIH Evaluator Guide"
           >
             <BookOpen className="w-3.5 h-3.5 text-emerald-700" />
             <span className="hidden sm:inline">Platform Guide</span>
           </button>
 
-          {/* Quick Persona Switcher Dropdown */}
+          {/* Role switcher dropdown */}
           <div className="relative">
             <button
               onClick={() => setIsRoleMenuOpen(!isRoleMenuOpen)}
               disabled={isSwitching}
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 text-gov-blue hover:bg-blue-100 border border-blue-200 transition-colors disabled:opacity-50"
-              title="Switch Persona"
+              title="Switch role"
             >
               <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span className="hidden md:inline">Persona:</span>
+              <span className="hidden md:inline">Role:</span>
               <span className="font-bold">{role}</span>
               <ChevronDown className="w-3 h-3 ml-0.5 opacity-60" />
             </button>
@@ -102,7 +102,7 @@ export const Topbar: React.FC<TopbarProps> = ({ onOpenMobileNav }) => {
               <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-elevated border border-slate-200 p-2 z-50 animate-in fade-in zoom-in-95">
                 <div className="px-2 py-1.5 border-b border-slate-100 mb-1">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                    Switch Active Persona
+                    Switch active role
                   </p>
                 </div>
                 {(['STARTUP', 'GOVERNMENT', 'EVALUATOR', 'ADMIN'] as UserRole[]).map((r) => {
@@ -119,7 +119,9 @@ export const Topbar: React.FC<TopbarProps> = ({ onOpenMobileNav }) => {
                       <span className="text-base">{acc.label.split(' ')[0]}</span>
                       <div className="flex-1 min-w-0">
                         <p className="leading-none font-semibold truncate">{acc.label.replace(/^[^\s]+\s+/, '')}</p>
-                        <p className="text-[10px] text-slate-500 truncate mt-0.5">{acc.email}</p>
+                        <p className="text-[10px] text-slate-500 truncate mt-0.5">
+                          {r === 'ADMIN' ? 'Restricted account' : acc.email}
+                        </p>
                       </div>
                     </button>
                   );
@@ -144,7 +146,7 @@ export const Topbar: React.FC<TopbarProps> = ({ onOpenMobileNav }) => {
         </div>
       </header>
 
-      {/* Interactive User Manual Modal */}
+      {/* Interactive SIH Evaluator Guide */}
       <UserManualModal
         isOpen={isManualOpen}
         onClose={() => setIsManualOpen(false)}

@@ -51,7 +51,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-bold">InnoGov User Manual &amp; Operating Guide</h2>
+              <h2 className="text-xl font-bold">SIH Evaluator Guide</h2>
               <p className="text-xs text-slate-400">
                 Official end-to-end instructions for public innovation procurement workflows
               </p>
@@ -63,6 +63,15 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
           >
             <X className="w-5 h-5" />
           </button>
+        </div>
+
+        <div className="mx-6 mt-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs leading-relaxed">
+          <strong className="block mb-1">Review access</strong>
+          SIH evaluators who do not want to register can sign in with the provided review credentials:
+          <span className="block mt-1 font-mono">Startup: navya@gmail.com / Password123</span>
+          <span className="block font-mono">Evaluator: neel@gmail.com / Password123</span>
+          <span className="block font-mono">Government: dd@gmail.com / Password123!</span>
+          <span className="block mt-1 text-amber-800">Administrator credentials are restricted for security.</span>
         </div>
 
         {/* Role Switcher Tabs */}
