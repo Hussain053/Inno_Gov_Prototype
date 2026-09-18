@@ -309,9 +309,9 @@ export const LandingPage: React.FC = () => {
       {/* Footer */}
       <footer className="mt-auto py-8 bg-white border-t border-slate-200 text-slate-500 text-xs text-center">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© 2026 InnoGov Public Procurement Portal. Built for Smart India Hackathon.</p>
+          <p>© 2026 InnoGov Public Procurement Portal. Built for Smart India Hackathon by TechYuva.</p>
           <div className="flex items-center gap-6 text-[11px] font-medium text-slate-600">
-            <span>Ministry of Electronics and Information Technology</span>
+            <span>Government of Maharashtra</span>
             <span>Department of Public Enterprises</span>
           </div>
         </div>
