@@ -403,6 +403,54 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
                 </p>
               </div>
 
+              {/* End-to-end workflow for SIH reviewers */}
+              <div className="rounded-2xl border border-blue-200 bg-blue-50/40 p-4 space-y-4">
+                <div>
+                  <h3 className="text-sm font-bold text-gov-navy flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-gov-blue" />
+                    InnoGov Application Workflow
+                  </h3>
+                  <p className="text-slate-600 mt-1">
+                    This is the complete hand-off from a government problem statement to a monitored scale-up contract. The System Administrator has oversight across every stage; procurement decisions remain with the Government Department.
+                  </p>
+                </div>
+
+                <img
+                  src="/flow.png"
+                  alt="InnoGov workflow connecting government departments, startups, evaluators, and system administrators from challenge creation through scaling"
+                  loading="lazy"
+                  decoding="async"
+                  className="block w-full rounded-xl border border-blue-100 shadow-sm bg-white"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="rounded-xl bg-white border border-slate-200 p-3 space-y-1">
+                    <span className="font-bold text-slate-900 block">1. Onboard &amp; govern access</span>
+                    <p className="text-slate-500">Users register by role. The administrator verifies entities, manages access and keeps an auditable record of platform activity.</p>
+                  </div>
+                  <div className="rounded-xl bg-white border border-slate-200 p-3 space-y-1">
+                    <span className="font-bold text-slate-900 block">2. Publish the public challenge</span>
+                    <p className="text-slate-500">A government officer defines the problem statement, eligibility, budget, timeline and measurable KPIs, then publishes the challenge for startups.</p>
+                  </div>
+                  <div className="rounded-xl bg-white border border-slate-200 p-3 space-y-1">
+                    <span className="font-bold text-slate-900 block">3. Match, invite &amp; apply</span>
+                    <p className="text-slate-500">The matching view helps the department identify suitable startups. Startups discover open challenges or receive invitations, then submit proposals.</p>
+                  </div>
+                  <div className="rounded-xl bg-white border border-slate-200 p-3 space-y-1">
+                    <span className="font-bold text-slate-900 block">4. Shortlist &amp; run a pilot</span>
+                    <p className="text-slate-500">Government reviews applications, shortlists a solution and sanctions a sandbox pilot with clear scope, deliverables and success criteria.</p>
+                  </div>
+                  <div className="rounded-xl bg-white border border-slate-200 p-3 space-y-1">
+                    <span className="font-bold text-slate-900 block">5. Submit evidence &amp; evaluate</span>
+                    <p className="text-slate-500">The startup uploads KPI results and supporting evidence. An assigned evaluator independently validates it, scores the submission and issues a recommendation.</p>
+                  </div>
+                  <div className="rounded-xl bg-white border border-slate-200 p-3 space-y-1">
+                    <span className="font-bold text-slate-900 block">6. Decide, contract &amp; audit</span>
+                    <p className="text-slate-500">Government reviews the scorecard, makes the final procurement decision and tracks milestone payments. The administrator monitors the activity trail and workflow health throughout.</p>
+                  </div>
+                </div>
+              </div>
+
               {/* Step-by-Step Flow */}
               <div className="space-y-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
