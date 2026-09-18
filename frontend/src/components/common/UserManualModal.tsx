@@ -364,6 +364,23 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
           {/* ADMIN GUIDE */}
           {activeRole === 'ADMIN' && (
             <div className="space-y-6">
+              <div className="rounded-2xl border border-slate-300 bg-slate-50 p-4 space-y-3">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Administrator interface reference</h3>
+                  <p className="text-slate-500 mt-1">
+                    Administrator credentials are restricted for security. The interface preview below is provided so SIH reviewers can understand the control-tower experience without accessing the protected account.
+                  </p>
+                </div>
+                <img
+                  src="/Screenshot%202026-09-18%20191319.png"
+                  alt="InnoGov administrator control tower dashboard"
+                  className="w-full rounded-xl border border-slate-200 shadow-sm"
+                />
+                <p className="text-[11px] text-slate-500">
+                  Control Tower view showing platform governance, user distribution, procurement pipeline health, and audit activity
+                </p>
+              </div>
+
               <div className="p-4 rounded-2xl bg-slate-100 border border-slate-300 space-y-2">
                 <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-slate-700" />
