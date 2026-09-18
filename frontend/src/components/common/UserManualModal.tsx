@@ -372,7 +372,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
                   </p>
                 </div>
                 <img
-                  src="/Screenshot%202026-09-18%20192543.png"
+                  src="/img1.png"
                   alt="InnoGov administrator control tower dashboard"
                   loading="lazy"
                   decoding="async"
