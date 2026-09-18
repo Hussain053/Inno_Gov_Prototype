@@ -262,9 +262,9 @@ export const LoginPage: React.FC = () => {
           {activeTab === 'login' ? (
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-[11px] leading-relaxed text-slate-600">
-                {selectedRole === 'STARTUP' && <><strong className="text-slate-800">Startup access:</strong> Use the provided account if you do not want to register: <span className="font-mono text-slate-800">navya@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span></>}
-                {selectedRole === 'EVALUATOR' && <><strong className="text-slate-800">Evaluator access:</strong> SIH evaluators who do not want to register can review the platform using: <span className="font-mono text-slate-800">neel@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span></>}
-                {selectedRole === 'GOVERNMENT' && <><strong className="text-slate-800">Government access:</strong> Use the provided account if you do not want to register: <span className="font-mono text-slate-800">dd@gmail.com</span> / <span className="font-mono text-slate-800">Password123!</span></>}
+                {selectedRole === 'STARTUP' && <>SIH evaluators who do not want to register can review the platform using: <span className="font-mono text-slate-800">navya@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span></>}
+                {selectedRole === 'EVALUATOR' && <>SIH evaluators who do not want to register can review the platform using: <span className="font-mono text-slate-800">neel@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span></>}
+                {selectedRole === 'GOVERNMENT' && <>SIH evaluators who do not want to register can review the platform using: <span className="font-mono text-slate-800">dd@gmail.com</span> / <span className="font-mono text-slate-800">Password123!</span></>}
                 {selectedRole === 'ADMIN' && <><strong className="text-slate-800">Administrator access:</strong> Credentials are restricted for security and are not displayed here</>}
               </div>
               <div>
@@ -333,7 +333,7 @@ export const LoginPage: React.FC = () => {
           ) : (
             <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
               <div className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-[11px] leading-relaxed text-slate-600">
-                Already have access? Select <strong className="text-slate-800">Sign In to Account</strong> above. SIH evaluators can use the provided evaluator credentials instead of registering
+                Already have access? Select <strong className="text-slate-800">Sign In to Account</strong> above. SIH evaluators who do not want to register can review the platform using the provided evaluator credentials or register if they prefer
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">

@@ -145,7 +145,7 @@ export const LandingPage: React.FC = () => {
               to="/login"
               className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg bg-gov-navy text-white hover:bg-slate-800 shadow-sm transition-all"
             >
-              <span>Register on Platform</span>
+              <span>Login to Platform</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           )}
@@ -183,7 +183,7 @@ export const LandingPage: React.FC = () => {
               to="/login?mode=register"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-bold bg-gov-navy text-white hover:bg-slate-800 shadow-elevated transition-all"
             >
-              <span>Register on Platform</span>
+              <span>Login to Platform</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <button
