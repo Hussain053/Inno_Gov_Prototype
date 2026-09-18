@@ -145,7 +145,7 @@ export const LandingPage: React.FC = () => {
               to="/login"
               className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg bg-gov-navy text-white hover:bg-slate-800 shadow-sm transition-all"
             >
-              <span>Login to Platform</span>
+              <span>Register on Platform</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           )}
@@ -158,7 +158,7 @@ export const LandingPage: React.FC = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-50 text-gov-blue border border-blue-200 mb-6 shadow-sm">
             <Sparkles className="w-4 h-4 text-blue-600" />
-            <span>Smart India Hackathon 2024–2026 • Problem 26136</span>
+            <span>Smart India Hackathon 2026 • Problem 26136</span>
           </div>
 
           {/* Headline */}
