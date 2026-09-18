@@ -9,7 +9,7 @@ interface AuthContextType {
   token: string | null;
   role: UserRole | null;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<User>;
+  login: (email: string, password: string, expectedRole?: UserRole) => Promise<User>;
   logout: () => void;
   isAuthenticated: () => boolean;
   refreshUser: () => Promise<User | null>;
@@ -126,14 +126,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     refreshUser();
   }, [refreshUser]);
 
-  const login = async (email: string, password: string): Promise<User> => {
+  const login = async (email: string, password: string, expectedRole?: UserRole): Promise<User> => {
     setIsLoading(true);
     try {
       const tokenData = await authService.login(email, password);
       localStorage.setItem('innogov_token', tokenData.access_token);
-      setToken(tokenData.access_token);
-
       const userData = await authService.getMe();
+
+      if (expectedRole && userData.role !== expectedRole) {
+        localStorage.removeItem('innogov_token');
+        localStorage.removeItem('innogov_user');
+        setToken(null);
+        setUser(null);
+        throw new Error(`These credentials belong to the ${userData.role.toLowerCase()} portal.`);
+      }
+
+      setToken(tokenData.access_token);
       setUser(userData);
       localStorage.setItem('innogov_user', JSON.stringify(userData));
       return userData;
@@ -156,6 +164,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         };
+
+        if (expectedRole && mockUser.role !== expectedRole) {
+          throw new Error(`These credentials belong to the ${mockUser.role.toLowerCase()} portal.`);
+        }
+
         const demoToken = `demo_token_${demoPersona.role.toLowerCase()}`;
         localStorage.setItem('innogov_token', demoToken);
         localStorage.setItem('innogov_user', JSON.stringify(mockUser));

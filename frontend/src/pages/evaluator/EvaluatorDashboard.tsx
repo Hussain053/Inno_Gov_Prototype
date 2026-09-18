@@ -31,7 +31,7 @@ export const EvaluatorDashboard: React.FC = () => {
   const pendingAssignments = assignments?.filter((a) => a.status !== 'COMPLETED') || [];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Top Banner */}
       <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -113,7 +113,7 @@ export const EvaluatorDashboard: React.FC = () => {
       </div>
 
       {/* Pending Evaluations Queue */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card space-y-4">
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-base font-bold text-gov-navy">Pending KPI Reviews & Scoring</h3>

@@ -19,7 +19,7 @@ export const EvaluatorHistoryPage: React.FC = () => {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card">
         <h1 className="text-xl font-bold text-gov-navy flex items-center gap-2">
           <Award className="w-5 h-5 text-purple-600" />
@@ -50,7 +50,7 @@ export const EvaluatorHistoryPage: React.FC = () => {
           </Link>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {evaluations?.map((ev) => (
             <div
               key={ev.id}

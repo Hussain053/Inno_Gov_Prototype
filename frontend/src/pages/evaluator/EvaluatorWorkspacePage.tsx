@@ -169,7 +169,7 @@ export const EvaluatorWorkspacePage: React.FC = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         <Link
           to="/evaluator/assignments"
@@ -225,7 +225,7 @@ export const EvaluatorWorkspacePage: React.FC = () => {
       )}
 
       {/* Submission Deliverables Review */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card space-y-5">
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card space-y-6">
         <h3 className="text-sm font-bold text-gov-navy uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-2">
           <FileCheck2 className="w-4 h-4 text-gov-blue" />
           Startup Pilot Deliverables & Empirical Evidence
@@ -350,7 +350,7 @@ export const EvaluatorWorkspacePage: React.FC = () => {
 
       {/* Evaluator Multi-Dimension Scoring Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card space-y-6">
+        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card space-y-8">
           <h3 className="text-sm font-bold text-gov-navy uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-2">
             <Sliders className="w-4 h-4 text-purple-600" />
             Evaluation Criteria Scoring (0–100 Scale)

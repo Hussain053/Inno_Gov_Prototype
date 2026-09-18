@@ -89,18 +89,21 @@ export const LoginPage: React.FC = () => {
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
+    const normalizedEmail = email.trim();
+    const normalizedPassword = password.trim();
+
+    if (!normalizedEmail || !normalizedPassword) {
       error('Input required', 'Please enter email and password');
       return;
     }
 
     setIsSubmitting(true);
     try {
-      const user = await login(email, password);
+      const user = await login(normalizedEmail, normalizedPassword, selectedRole);
       success('Authentication successful', `Welcome back, ${user.name}`);
       redirectUser(user.role);
     } catch (err: any) {
-      const msg = err.response?.data?.detail || 'Invalid email or password. Please verify credentials.';
+      const msg = err.response?.data?.detail || err.message || 'Invalid email or password. Please verify credentials.';
       error('Sign in failed', msg);
     } finally {
       setIsSubmitting(false);
@@ -263,7 +266,7 @@ export const LoginPage: React.FC = () => {
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-[11px] leading-relaxed text-slate-600">
                 {selectedRole === 'STARTUP' && <><span className="block">SIH evaluators who do not want to register can review the platform using:</span><span className="block"><strong className="text-slate-800">Email:</strong> <span className="font-mono text-slate-800">navya@gmail.com</span></span><span className="block"><strong className="text-slate-800">Password:</strong> <span className="font-mono text-slate-800">Password123</span></span></>}
-                {selectedRole === 'EVALUATOR' && <><span className="block">SIH evaluators who do not want to register can review the platform using:</span><span className="block"><strong className="text-slate-800">Email:</strong> <span className="font-mono text-slate-800">neel@gmail.com</span></span><span className="block"><strong className="text-slate-800">Password:</strong> <span className="font-mono text-slate-800">Password123</span></span></>}
+                {selectedRole === 'EVALUATOR' && <><span className="block">SIH evaluators who do not want to register can review the platform using:</span><span className="block"><strong className="text-slate-800">Email:</strong> <span className="font-mono text-slate-800">neel@gmail.com</span></span><span className="block"><strong className="text-slate-800">Password:</strong> <span className="font-mono text-slate-800">Password123!</span></span></>}
                 {selectedRole === 'GOVERNMENT' && <><span className="block">SIH evaluators who do not want to register can review the platform using:</span><span className="block"><strong className="text-slate-800">Email:</strong> <span className="font-mono text-slate-800">dd@gmail.com</span></span><span className="block"><strong className="text-slate-800">Password:</strong> <span className="font-mono text-slate-800">Password123!</span></span></>}
                 {selectedRole === 'ADMIN' && <><strong className="text-slate-800">Administrator access:</strong> Credentials are restricted for security and are not displayed here</>}
               </div>

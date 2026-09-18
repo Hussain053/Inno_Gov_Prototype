@@ -20,7 +20,7 @@ export const EvaluatorAssignmentsPage: React.FC = () => {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card">
         <h1 className="text-xl font-bold text-gov-navy flex items-center gap-2">
           <FileCheck2 className="w-5 h-5 text-purple-600" />
@@ -45,7 +45,7 @@ export const EvaluatorAssignmentsPage: React.FC = () => {
           </p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {assignments?.map((assignment) => {
             const challengeTitle =
               assignment.pilot_submission?.pilot?.challenge?.title ||

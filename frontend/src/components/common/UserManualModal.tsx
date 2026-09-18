@@ -69,7 +69,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
           <strong className="block mb-1">Review access</strong>
           SIH evaluators who do not want to register can sign in with the provided review credentials:
           <span className="block mt-1"><strong>Startup</strong> | <strong>Email:</strong> <span className="font-mono">navya@gmail.com</span> | <strong>Password:</strong> <span className="font-mono">Password123</span></span>
-          <span className="block"><strong>Evaluator</strong> | <strong>Email:</strong> <span className="font-mono">neel@gmail.com</span> | <strong>Password:</strong> <span className="font-mono">Password123</span></span>
+          <span className="block"><strong>Evaluator</strong> | <strong>Email:</strong> <span className="font-mono">neel@gmail.com</span> | <strong>Password:</strong> <span className="font-mono">Password123!</span></span>
           <span className="block"><strong>Government</strong> | <strong>Email:</strong> <span className="font-mono">dd@gmail.com</span> | <strong>Password:</strong> <span className="font-mono">Password123!</span></span>
           <span className="block mt-1 text-amber-800">Administrator credentials are restricted for security.</span>
         </div>
@@ -374,6 +374,8 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
                 <img
                   src="/Screenshot%202026-09-18%20191319.png"
                   alt="InnoGov administrator control tower dashboard"
+                  loading="lazy"
+                  decoding="async"
                   className="block w-full max-h-[420px] object-contain object-top rounded-xl border border-slate-200 shadow-sm bg-white"
                 />
                 <p className="text-[11px] text-slate-500">
@@ -382,6 +384,8 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
                 <img
                   src="/Screenshot%20(611).png"
                   alt="InnoGov administrator startup verification dashboard"
+                  loading="lazy"
+                  decoding="async"
                   className="block w-full max-h-[420px] object-contain object-top rounded-xl border border-slate-200 shadow-sm bg-white"
                 />
                 <p className="text-[11px] text-slate-500">
