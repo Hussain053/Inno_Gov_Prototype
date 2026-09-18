@@ -55,6 +55,10 @@ export const LoginPage: React.FC = () => {
     }
   }, [isAuthenticated, role]);
 
+  useEffect(() => {
+    setActiveTab(searchParams.get('mode') === 'register' ? 'register' : 'login');
+  }, [searchParams]);
+
   const handleRoleSelect = (r: UserRole) => {
     setSelectedRole(r);
     setEmail('');
@@ -223,7 +227,11 @@ export const LoginPage: React.FC = () => {
           {/* Mode Switcher Tabs */}
           <div className="flex border-b border-slate-200 pb-3 mb-5">
             <button
-              onClick={() => setActiveTab('login')}
+              type="button"
+              onClick={() => {
+                setActiveTab('login');
+                navigate(`/login?role=${selectedRole}`);
+              }}
               className={`flex-1 pb-2 text-xs font-bold border-b-2 text-center transition-colors ${
                 activeTab === 'login'
                   ? 'border-gov-blue text-gov-blue'
@@ -234,7 +242,11 @@ export const LoginPage: React.FC = () => {
             </button>
             {selectedRole !== 'ADMIN' && (
               <button
-                onClick={() => setActiveTab('register')}
+                type="button"
+                onClick={() => {
+                  setActiveTab('register');
+                  navigate(`/login?role=${selectedRole}&mode=register`);
+                }}
                 className={`flex-1 pb-2 text-xs font-bold border-b-2 text-center transition-colors ${
                   activeTab === 'register'
                     ? 'border-gov-blue text-gov-blue'
@@ -248,6 +260,28 @@ export const LoginPage: React.FC = () => {
 
           {activeTab === 'login' ? (
             <form onSubmit={handleLoginSubmit} className="space-y-4">
+              <div className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-[11px] leading-relaxed text-slate-600">
+                {selectedRole === 'STARTUP' && (
+                  <>
+                    <strong className="text-slate-800">Startup access:</strong> Use the provided account if you do not want to register: <span className="font-mono text-slate-800">navya@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span>.
+                  </>
+                )}
+                {selectedRole === 'EVALUATOR' && (
+                  <>
+                    <strong className="text-slate-800">Evaluator access:</strong> SIH evaluators who do not want to register can review the platform using: <span className="font-mono text-slate-800">neel@gmail.com</span> / <span className="font-mono text-slate-800">Password123</span>.
+                  </>
+                )}
+                {selectedRole === 'GOVERNMENT' && (
+                  <>
+                    <strong className="text-slate-800">Government access:</strong> Use the provided account if you do not want to register: <span className="font-mono text-slate-800">dd@gmail.com</span> / <span className="font-mono text-slate-800">Password123!</span>.
+                  </>
+                )}
+                {selectedRole === 'ADMIN' && (
+                  <>
+                    <strong className="text-slate-800">Administrator access:</strong> Credentials are restricted for security and are not displayed here.
+                  </>
+                )}
+              </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Email Address
@@ -313,6 +347,9 @@ export const LoginPage: React.FC = () => {
             </form>
           ) : (
             <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
+              <div className="rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-[11px] leading-relaxed text-slate-600">
+                Already have access? Select <strong className="text-slate-800">Sign In to Account</strong> above. SIH evaluators can use the provided evaluator credentials instead of registering.
+              </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Full Name / Organization Head
