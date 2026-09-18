@@ -30,7 +30,7 @@ export const LoginPage: React.FC = () => {
   const initialRole = (searchParams.get('role') as UserRole) || 'STARTUP';
   const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole);
   const [activeTab, setActiveTab] = useState<'login' | 'register'>(
-    searchParams.get('mode') === 'register' ? 'register' : 'login'
+    window.location.pathname === '/register' || searchParams.get('mode') === 'register' ? 'register' : 'login'
   );
 
   // Login form state
@@ -57,7 +57,7 @@ export const LoginPage: React.FC = () => {
   }, [isAuthenticated, role]);
 
   useEffect(() => {
-    setActiveTab(searchParams.get('mode') === 'register' ? 'register' : 'login');
+    setActiveTab(window.location.pathname === '/register' || searchParams.get('mode') === 'register' ? 'register' : 'login');
   }, [searchParams]);
 
   const handleRoleSelect = (r: UserRole) => {

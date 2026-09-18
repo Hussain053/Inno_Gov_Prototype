@@ -89,6 +89,10 @@ export const App: React.FC = () => {
         path="/login"
         element={isAuthenticated() ? <Navigate to={getDefaultPortal()} replace /> : <LoginPage />}
       />
+      <Route
+        path="/register"
+        element={isAuthenticated() ? <Navigate to={getDefaultPortal()} replace /> : <LoginPage />}
+      />
 
       {/* Authenticated Application Layout */}
       <Route element={<AppLayout />}>

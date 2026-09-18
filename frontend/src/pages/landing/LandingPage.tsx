@@ -142,7 +142,7 @@ export const LandingPage: React.FC = () => {
             </Link>
           ) : (
             <Link
-              to="/login"
+              to="/register"
               className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg bg-gov-navy text-white hover:bg-slate-800 shadow-sm transition-all"
             >
               <span>Register on Platform</span>
