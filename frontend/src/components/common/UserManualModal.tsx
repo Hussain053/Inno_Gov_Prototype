@@ -68,9 +68,9 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
         <div className="mx-6 mt-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs leading-relaxed">
           <strong className="block mb-1">Review access</strong>
           SIH evaluators who do not want to register can sign in with the provided review credentials:
-          <span className="block mt-1 font-mono">Startup: navya@gmail.com / Password123</span>
-          <span className="block font-mono">Evaluator: neel@gmail.com / Password123</span>
-          <span className="block font-mono">Government: dd@gmail.com / Password123!</span>
+          <span className="block mt-1"><strong>Startup</strong> | <strong>Email:</strong> <span className="font-mono">navya@gmail.com</span> | <strong>Password:</strong> <span className="font-mono">Password123</span></span>
+          <span className="block"><strong>Evaluator</strong> | <strong>Email:</strong> <span className="font-mono">neel@gmail.com</span> | <strong>Password:</strong> <span className="font-mono">Password123</span></span>
+          <span className="block"><strong>Government</strong> | <strong>Email:</strong> <span className="font-mono">dd@gmail.com</span> | <strong>Password:</strong> <span className="font-mono">Password123!</span></span>
           <span className="block mt-1 text-amber-800">Administrator credentials are restricted for security.</span>
         </div>
 
@@ -136,7 +136,7 @@ export const UserManualModal: React.FC<UserManualModalProps> = ({
                   Purpose of the Startup Role
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  As an innovative startup entity, you can discover government challenges, receive invitations from departments, submit proposals, deploy sanctioned sandbox pilots, upload empirical telemetry/evidence, receive independent evaluator scorecards, and graduate into multi-crore public procurement contracts under GFR Rule 149 relaxation.
+                  As an innovative startup entity, you can discover government challenges, receive invitations from departments, submit proposals, deploy sanctioned sandbox pilots, receive phase-wise milestone payments, upload empirical telemetry/evidence, receive independent evaluator scorecards, and progress toward public procurement contracts, subject to applicable procurement rules and eligibility requirements.
                 </p>
               </div>
 

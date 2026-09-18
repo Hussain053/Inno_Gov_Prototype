@@ -180,7 +180,7 @@ export const LandingPage: React.FC = () => {
           {/* Primary Action Buttons */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <Link
-              to="/login?mode=register"
+              to="/login"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-bold bg-gov-navy text-white hover:bg-slate-800 shadow-elevated transition-all"
             >
               <span>Login to Platform</span>
