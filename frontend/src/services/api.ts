@@ -7,7 +7,10 @@ export const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 15000,
+  // Hosted backends can need a little time to resume after being idle.  A
+  // 15-second client timeout turns an otherwise valid cold start into a
+  // failed sign-in, so keep the request alive long enough for it to finish.
+  timeout: 60000,
 });
 
 // Request interceptor attaches JWT bearer token

@@ -19,6 +19,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { UserRole } from '../../types';
 import authService from '../../services/authService';
+import apiClient from '../../services/api';
 
 export const LoginPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -37,6 +38,7 @@ export const LoginPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isBackendWaking, setIsBackendWaking] = useState(false);
 
   // Registration form state
   const [regName, setRegName] = useState('');
@@ -58,6 +60,13 @@ export const LoginPage: React.FC = () => {
   useEffect(() => {
     setActiveTab(window.location.pathname === '/register' || searchParams.get('mode') === 'register' ? 'register' : 'login');
   }, [searchParams]);
+
+  // Wake a hosting provider that has put the API to sleep before the user
+  // submits the form. Failures are deliberately ignored here: the login
+  // request remains the source of truth and displays a useful error if needed.
+  useEffect(() => {
+    void apiClient.get('/').catch(() => undefined);
+  }, []);
 
   const handleRoleSelect = (r: UserRole) => {
     setSelectedRole(r);
@@ -97,14 +106,20 @@ export const LoginPage: React.FC = () => {
     }
 
     setIsSubmitting(true);
+    const wakingTimer = window.setTimeout(() => setIsBackendWaking(true), 5000);
     try {
       const user = await login(normalizedEmail, normalizedPassword, selectedRole);
       success('Authentication successful', `Welcome back, ${user.name}`);
       redirectUser(user.role);
     } catch (err: any) {
-      const msg = err.response?.data?.detail || err.message || 'Invalid email or password. Please verify credentials.';
+      const requestTimedOut = err.code === 'ECONNABORTED' || err.code === 'ETIMEDOUT';
+      const msg = requestTimedOut
+        ? 'The backend is still starting. Please wait a moment and try again.'
+        : err.response?.data?.detail || err.message || 'Invalid email or password. Please verify credentials.';
       error('Sign in failed', msg);
     } finally {
+      window.clearTimeout(wakingTimer);
+      setIsBackendWaking(false);
       setIsSubmitting(false);
     }
   };
@@ -315,13 +330,22 @@ export const LoginPage: React.FC = () => {
               </div>
 
               <div className="pt-2">
+                {isSubmitting && isBackendWaking && (
+                  <div className="mb-3 flex items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] text-amber-800" role="status">
+                    <div className="h-3.5 w-3.5 shrink-0 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" />
+                    <span><strong>Backend is starting up.</strong> Your sign-in is still in progress and can take up to a minute.</span>
+                  </div>
+                )}
                 <button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full flex items-center justify-center gap-2 py-2.5 px-4 border border-transparent rounded-lg text-xs font-bold text-white bg-gov-navy hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gov-navy transition-colors disabled:opacity-50 shadow-sm"
                 >
                   {isSubmitting ? (
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>{isBackendWaking ? 'Starting backend…' : 'Signing in…'}</span>
+                    </>
                   ) : (
                     <>
                       <span>Sign In with Role</span>
